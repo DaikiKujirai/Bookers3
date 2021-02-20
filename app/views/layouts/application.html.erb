@@ -4,24 +4,48 @@
     <title>Bookers3</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  <header>
+    <div id="sp-menu">
+      <h2 class="mt-3">MENU</h2>
+      <ul class="nav navbar bg-dark ml-auto">
+        <% if user_signed_in? %>
+        <li><%= link_to " Home", root_path, class: "fas fa-home text-light" %></li>
+        <li><%= link_to " Users", root_path, class: "fas fa-users text-light" %></li>
+        <li><%= link_to " Books", root_path, class: "fas fa-book-open text-light" %></li>
+        <li><%= link_to " Post", new_post_image_path, class: "fas fa-feather-alt text-light" %></li>
+        <li><%= link_to " logout", destroy_user_session_path, method: :delete, class: "fas fa-hiking text-light" %></li>
+        <% else %>
+        <li><%= link_to " Home", root_path, class: "fas fa-home text-light" %></li>
+        <li><%= link_to " About", root_path, class: "fas fa-link text-light" %></li>
+        <li><%= link_to " sign up", new_user_registration_path, class: "fas fa-user-plus text-light" %></li>
+        <li><%= link_to " login", new_user_session_path, class: "fas fa-key text-light" %></li>
+        <% end %>
+      </ul>
+    </div>
 
-  <body>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
-    <% end %>
-    <%= yield %>
-  </body>
+    <div id="hm-icon">
+      <a class="menu-trigger" href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+    </div>
+  </header>
+  <main>
+  <p><%= flash[:notice] %></p>
+  </main>
+  <%= yield %>
+  <footer>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="mx-auto">
+          <p>CopyRight infratop.inc</p>
+        </div>
+      </div>
+    </div>
+  </footer>
 </html>
