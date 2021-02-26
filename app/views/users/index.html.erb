@@ -1,18 +1,42 @@
-<h3>image</h3>
-<%= current_user.name %>
-<%= current_user.introduction %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
 
-<%# @user.each do |user| do %>
-  <table>
-    <tr>
-      <th>user.image<br>user.name</th>
-      <th>book_name</th>
-      <th>caption</th>
-    </tr>
-    <tr>
-      <td>image<br>user.name</td>
-      <td>book_name</td>
-      <th>caption</th>
-    </tr>
-  </table>
-<%# end %>
+      <%= attachment_image_tag @user, :profile_image, :fill, 60, 60 fallback: "no_image.jpg" %>
+      <table class="table">
+        <tr>
+          <th>name</th>
+          <td><%= current_user.name %></td>
+        </tr>
+        <tr>
+          <th>introduction</th>
+          <td><%= current_user.introduction %></td>
+        </tr>
+      </table>
+
+
+    </div>
+    <div class="col-md-9">
+      <% @users.each do |user| %>
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th>user.image</th>
+            <th>name</th>
+            <th></th>
+            <th>caption</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>image</td>
+            <td><%= user.name %></td>
+            <th><%= user.introduction %></th>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>

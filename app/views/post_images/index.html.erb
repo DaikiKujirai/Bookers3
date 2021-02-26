@@ -1,18 +1,41 @@
-<h1>postimageindex</h1>
-
-<%# @post_image.each do |f| %>
-<table>
-  <tr>
-    <th>user.image<br>user.name</th>
-    <th>image</th>
-    <th>book_name</th>
-    <th>caption</th>
-  </tr>
-  <tr>
-    <th>user.image<br>user.name</th>
-    <th>book.image</th>
-    <th>book.name</th>
-    <th>caption</th>
-  </tr>
-</table>
-<%# end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 text-center">
+      <h3>User Info</h3>
+      <h4>image</h4>
+      <table class="table">
+        <tr>
+          <th>Name</th>
+          <td><%= current_user.name %></td>
+        </tr>
+        <tr>
+          <th>Introduction</th>
+          <td><%= current_user.introduction %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-9 text-center">
+      <h1>Books</h1>
+        <table class="table table-hover">
+          <thead class="thead thead-dark">
+            <tr>
+              <th>user.name</th>
+              <th>image</th>
+              <th>book_name</th>
+              <th>caption</th>
+            </tr>
+          </thead>
+          <% @post_images.each do |post_image| %>
+          <tbody>
+            <tr>
+              <td>user.image<br><%= current_user.name %></td>
+              <td>user.image</td>
+              <td><%= post_image.book_name %></td>
+              <td>caption</td>
+            </tr>
+          </tbody>
+          <% end %>
+        </table>
+    </div>
+  </div>
+</div>
